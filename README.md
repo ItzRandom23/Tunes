@@ -1,5 +1,5 @@
 <h1 align="center">
-Best Discord Music Bot </h1><br/>
+Cool Music Bot Open Source Code </h1><br/>
 
 ## **Installation | How to use the Bot**
 
@@ -14,7 +14,7 @@ Best Discord Music Bot </h1><br/>
 **5.** start the bot with **`start.bat`**
 <br/>
 
-### _Modify - config.json_
+### _Modify - config.json_ or Use .env [ If using replit ]
 
 ```javascript
 {
