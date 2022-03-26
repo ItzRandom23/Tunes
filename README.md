@@ -25,3 +25,5 @@ Cool Music Bot Open Source Code </h1><br/>
 <br/>
 
 If Any Bug Open Pull Request
+
+Thanks For Using This Code And Cool Music
