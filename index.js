@@ -1,10 +1,3 @@
-const express = require('express');
-
-const app = express();
-
-app.get('/', (req, res) => {res.send('Cool Music Is On !')});
-
-app.listen(3000, () => {console.log('server started');});
 const { Client, Collection, Intents } = require("discord.js");
 const fs = require("fs");
 const client = new Client({
@@ -23,18 +16,18 @@ const client = new Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MEMBERS,
     // Intents.FLAGS.GUILD_BANS,
-    // Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
-    // Intents.FLAGS.GUILD_INTEGRATIONS,
-    // Intents.FLAGS.GUILD_WEBHOOKS,
-    // Intents.FLAGS.GUILD_INVITES,
+    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+    //Intents.FLAGS.GUILD_INTEGRATIONS,
+    //Intents.FLAGS.GUILD_WEBHOOKS,
+    //Intents.FLAGS.GUILD_INVITES,
     Intents.FLAGS.GUILD_VOICE_STATES,
-    // Intents.FLAGS.GUILD_PRESENCES,
+    //Intents.FLAGS.GUILD_PRESENCES,
     Intents.FLAGS.GUILD_MESSAGES,
-    // Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-    // Intents.FLAGS.GUILD_MESSAGE_TYPING,
-    Intents.FLAGS.DIRECT_MESSAGES,
-    // Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-    // Intents.FLAGS.DIRECT_MESSAGE_TYPING,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    //Intents.FLAGS.GUILD_MESSAGE_TYPING,
+    // Intents.FLAGS.DIRECT_MESSAGES,
+    Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+    //Intents.FLAGS.DIRECT_MESSAGE_TYPING
   ],
 });
 module.exports = client;
@@ -42,17 +35,16 @@ module.exports = client;
 const config = require("./settings/config.json");
 
 // // for replit
-// const express = require("express");
-// const app = express();
-// const port = 3000;
+const express = require("express"); const app = express();
+ const port = 3000;
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+ app.get("/", (req, res) => {
+   res.send("Hello World!");
+ });
 
-// app.listen(port, () => {
-//   console.log(` app listening on port ${port}`);
-// });
+ app.listen(port, () => {
+   console.log(` app listening on port ${port}`);
+ });
 
 // Global Variables
 client.events = new Collection();
@@ -73,14 +65,9 @@ client.categories = fs.readdirSync("./commands/");
 const Enmap = require("enmap");
 client.settings = new Enmap({
   name: "settings",
-  dataDir: "./Database/Settings",
-});
-client.music = new Enmap({
-  name: "music",
-  dataDir: "./Database/Music",
 });
 
-client.login(process.env.token || config.token);
+client.login(process.env.token);
 
 process.on("unhandledRejection", (reason, p) => {
   console.log(" [Error_Handling] :: Unhandled Rejection/Catch");
