@@ -1,5 +1,5 @@
 {
-  "name": "jugnumusic",
+  "name": "Cool Music",
   "version": "3.0.0",
   "description": "best music bot with op filters",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "distube",
     "player"
   ],
-  "author": "KabirSingh",
+  "author": "Cool Management",
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
