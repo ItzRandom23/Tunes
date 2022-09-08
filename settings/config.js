@@ -1,7 +1,7 @@
 module.exports = {
   TOKEN:
     process.env.TOKEN ||
-    "OTIzNTI5Mzk4NDI1MDk2MTkz.GJNz8y.iZA876zHMjx2RIIIiM3IswZC4ztbqYpbw7g9A4",
+    "",
   PREFIX: process.env.PREFIX || "..",
   embed: {
     color: process.env.color || "#220f80",
@@ -23,7 +23,7 @@ module.exports = {
   // others
   guildID: process.env.guildID || "GUILD_ID", // for slash command
   owners: "878975596623986700",
-  mongodb : process.env.mongodb || "mongodb+srv://Bot_Development:iampulkitji@cluster0.qgmvt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  mongodb : process.env.mongodb || "",
   filters: {
     clear: "dynaudnorm=f=200",
     lightbass: "bass=g=8,dynaudnorm=f=200",
@@ -73,9 +73,9 @@ module.exports = {
   links: {
     inviteURL:
       process.env.inviteURL ||
-      `https://discord.com/api/oauth2/authorize?client_id=BOTID&permissions=397619363185&scope=bot%20applications.commands`,
+      `https://discord.com/api/oauth2/authorize?client_id=923529398425096193&permissions=397619363185&scope=bot%20applications.commands`,
     DiscordServer: process.env.DiscordServer || `https://discord.gg/sHMpEkYDS8`,
-    VoteURL: process.env.VoteURL || `https://discord.gg/PcUVWApWN3`,
+    VoteURL: process.env.VoteURL || `https://discord.gg/sHMpEkYDS8`,
   },
   options: {
     embedFooter: false,
