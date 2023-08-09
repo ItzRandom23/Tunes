@@ -1,20 +1,3 @@
-{
-  "name": "coolmusic",
-  "version": "1.0.0",
-  "description": "A Lavalink Discord Music Bot Based on erela.js",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "node": "npm i --save-dev node@latest && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH"
-  },
-  "keywords": [
-    "music",
-    "discord.js",
-    "discord-bot",
-    "lavalink-music-bot"
-  ],
-  "author": "MrRandom",
-  "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
@@ -41,4 +24,4 @@
   "devDependencies": {
     "node": "^18.5.0"
   }
-}
+
