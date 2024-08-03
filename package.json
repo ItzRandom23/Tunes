@@ -1,0 +1,24 @@
+{
+  "name": "tunes",
+  "version": "0.0.1",
+  "description": "Tunes is a new and advanced music bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItzRandom23/Tunes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ItzRandom23/Tunes/issues"
+  },
+  "homepage": "https://github.com/ItzRandom23/Tunes#readme",
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "magmastream": "^2.5.9",
+  }
+}
