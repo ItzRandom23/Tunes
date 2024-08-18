@@ -14,7 +14,7 @@ module.exports = {
     musicplaying: false,
   },
   /**
-   * @param {{ client: import("../../structures/Client"), interaction: import("discord.js").CommandInteraction, player: any }}
+   * @param {{ client: import("../../structures/Client"), interaction: import("discord.js").CommandInteraction}}
    */
   run: async (client, interaction, player) => {
     if (player) {
