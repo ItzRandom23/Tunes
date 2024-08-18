@@ -14,6 +14,13 @@ Currently, the bot supports the following commands:
 - `resume`
 - `stop`
 - `volume`
+- `uptime`
+- `seek`
+- `skip`
+- `loop`
+- `previous`
+- `replay`
+
 
 ## Upcoming Features
 
