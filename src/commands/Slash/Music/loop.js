@@ -4,6 +4,13 @@ module.exports = {
   data: {
     name: 'loop',
     description: 'Toggle looping of the current song.',
+    settings: {
+    ownerOnly: false,
+    inVoiceChannel: true,
+    sameVoiceChannel: true,
+    musicnotplaying: true,
+    musicplaying: true,
+  },
     options: [
       {
         name: 'mode',
