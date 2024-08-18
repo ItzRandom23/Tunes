@@ -14,6 +14,15 @@ module.exports = {
    * @param {{ client: import("../../../structures/Client"), interaction: import("discord.js").CommandInteraction }}
    */
   run: async (client, interaction, player) => {
+    if (!player.playing) {
+      return interaction.editReply({
+      embeds: [
+        new EmbedBuilder()
+          .setColor("Red")
+          .setDescription("I am not playing anything right now."),
+      ],
+    });
+    }
     player.destroy();
 
     return interaction.editReply({
