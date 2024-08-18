@@ -14,14 +14,28 @@ module.exports = {
    * @param {{ client: import("../../../structures/Client"), interaction: import("discord.js").CommandInteraction }}
    */
   run: async (client, interaction, player) => {
-    player.previous();
+    const currentTrack = player.queue.current;
+    const previousTrack = player.queue.previous; // Assuming `queue.previous` gives the previous track
+    const requester = currentTrack.requester;
 
-    return interaction.editReply({
+    if (!previousTrack) {
+      return interaction.editReply({
       embeds: [
         new EmbedBuilder()
-          .setColor("Blue")
-          .setDescription("played the previous track."),
+          .setColor("Red")
+          .setDescription("There is no previous track."),
       ],
     });
+    } else {
+      player.previous();
+
+      return interaction.editReply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Blue")
+            .setDescription("played the previous track."),
+      ],
+    });
+    }
   },
 };
