@@ -14,15 +14,7 @@ module.exports = {
    * @param {{ client: import("../../../structures/Client"), interaction: import("discord.js").CommandInteraction }}
    */
   run: async (client, interaction, player) => {
-    if (!player.playing) {
-      return interaction.editReply({
-      embeds: [
-        new EmbedBuilder()
-          .setColor("Red")
-          .setDescription("I am not playing anything right now."),
-      ],
-    });
-    }
+    
     if (player.queue.size === 0) {
             const noMoreTracksEmbed = new EmbedBuilder()
                 .setColor('#FF0000')
