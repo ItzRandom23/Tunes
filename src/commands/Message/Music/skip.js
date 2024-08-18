@@ -16,15 +16,6 @@ module.exports = {
    * @param {{ message: import("discord.js").Message }}
    */
   run: async ({ message, player }) => {
-    if (!player.playing) {
-      return message.channel.send({
-      embeds: [
-        new EmbedBuilder()
-          .setColor("Red")
-          .setDescription("I am not playing anything right now."),
-      ],
-    });
-    }
 
     if (player.queue.size === 0) {
             const noMoreTracksEmbed = new EmbedBuilder()
