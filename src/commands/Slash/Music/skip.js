@@ -23,12 +23,11 @@ module.exports = {
       ],
     });
     }
-    const currentTrack = player.queue.current;
     if (player.queue.size === 0) {
             const noMoreTracksEmbed = new EmbedBuilder()
                 .setColor('#FF0000')
                 .setDescription('There are no more tracks in the queue to skip to.');
-            return await message.channel.send({ embeds: [noMoreTracksEmbed] });
+            return await interaction.editReply({ embeds: [noMoreTracksEmbed] });
     }
     player.stop();
 
@@ -36,7 +35,7 @@ module.exports = {
       embeds: [
         new EmbedBuilder()
           .setColor("Blue")
-          .setDescription("played the previous track."),
+          .setDescription("skipped to the next track."),
       ],
     });
   },
