@@ -25,19 +25,23 @@ To install and run the bot locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/ItzRandom23/Tunes.git```
+   git clone https://github.com/ItzRandom23/Tunes.git
+   ```
 
 2. **Navigate to the repository directory:**
-  ```bash
-cd Tunes```
+   ```bash
+   cd Tunes
+   ```
 
 3. **Install the dependencies:**
    ```bash
-   npm install```
+   npm install
+   ```
 
 4. **Start the bot:**
    ```bash
-   npm start```
+   npm start
+   ```
 
 ## Support
 
@@ -50,5 +54,3 @@ If you'd like to contribute to the project, please fork the repository and submi
 ## Note
 
 The code uses the latest version of modules and dependencies to ensure compatibility and the latest features.
-
-
