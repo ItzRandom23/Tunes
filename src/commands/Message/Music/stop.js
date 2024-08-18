@@ -17,10 +17,13 @@ module.exports = {
    */
   run: async ({ message, player }) => {
     if (!player.playing) {
-            const embed = new EmbedBuilder()
-                .setColor('#FFD700')
-                .setDescription("I am not playing anything currently.")
-            return message.reply({embeds: [embed]});
+      return message.channel.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor("Red")
+          .setDescription("I am not playing anything currently."),
+      ],
+    });
     }
     player.destroy();
 
