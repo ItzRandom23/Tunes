@@ -4,6 +4,7 @@ module.exports = {
   mongo:
     "", // Your Mongo URL here
   prefix: "", // prefix here
+  defaultsource: "", // your source here 
   nodes: [
     {
       identifier: "", // Name of the Node
