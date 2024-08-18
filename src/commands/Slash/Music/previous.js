@@ -14,15 +14,6 @@ module.exports = {
    * @param {{ client: import("../../../structures/Client"), interaction: import("discord.js").CommandInteraction }}
    */
   run: async (client, interaction, player) => {
-    if (!player.playing) {
-      return interaction.editReply({
-      embeds: [
-        new EmbedBuilder()
-          .setColor("Red")
-          .setDescription("I am not playing anything right now."),
-      ],
-    });
-    }
     const currentTrack = player.queue.current;
     const previousTrack = player.queue.previous; // Assuming `queue.previous` gives the previous track
     const requester = currentTrack.requester;
