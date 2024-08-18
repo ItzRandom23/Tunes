@@ -7,7 +7,7 @@ module.exports = class Magmastream extends Manager {
     super({
       nodes: config.nodes,
       autoPlay: true,
-      defaultSearchPlatform: "spotify",
+      defaultSearchPlatform: config.defaultsource,
       clientName: "Tunes",
       send: (id, payload) => this._sendPayload(id, payload),
     });
