@@ -10,28 +10,14 @@ module.exports = {
     inVoiceChannel: true,
     sameVoiceChannel: true,
     musicnotplaying: true,
-    musicplaying: false,
+    musicplaying: true,
   },
   /**
    * @param {{ client: import("../../../structures/Client"), message: import("discord.js").Message }}
    */
   run: async ({ client, message, player }) => {
     const args = message.content.split(' ').slice(1);
-    const mode = args[0];
-
-    if (!player) {
-      const embed = new EmbedBuilder()
-        .setColor('#FFD700')
-        .setDescription("I am not connected to any Voice Channel.");
-      return message.channel.send({ embeds: [embed] });
-    }
-
-    if (!player.playing) {
-      const embed = new EmbedBuilder()
-        .setColor('#FFD700')
-        .setDescription("No song is playing right now.");
-      return message.channel.send({ embeds: [embed] });
-    }
+    const mode = args[0]
 
     if (mode === 'enable') {
       player.setTrackRepeat(true);
