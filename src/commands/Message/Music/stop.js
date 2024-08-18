@@ -16,6 +16,12 @@ module.exports = {
    * @param {{ message: import("discord.js").Message }}
    */
   run: async ({ message, player }) => {
+    if (!player.playing) {
+            const embed = new EmbedBuilder()
+                .setColor('#FFD700')
+                .setDescription("I am not playing anything currently.")
+            return message.reply({embeds: [embed]});
+    }
     player.destroy();
 
     return message.channel.send({
