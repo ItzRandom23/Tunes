@@ -23,20 +23,6 @@ module.exports = {
   run: async ({ client, interaction, player }) => {
     const mode = interaction.options.getString('mode');
 
-    if (!player) {
-      const embed = new EmbedBuilder()
-        .setColor('#FFD700')
-        .setDescription("I am not connected to any Voice Channel.");
-      return interaction.reply({ embeds: [embed], ephemeral: true });
-    }
-
-    if (!player.playing) {
-      const embed = new EmbedBuilder()
-        .setColor('#FFD700')
-        .setDescription("No song is playing right now.");
-      return interaction.reply({ embeds: [embed], ephemeral: true });
-    }
-
     if (mode === 'enable') {
       player.setTrackRepeat(true);
       const embed = new EmbedBuilder()
