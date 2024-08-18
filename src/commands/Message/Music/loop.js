@@ -15,10 +15,9 @@ module.exports = {
   /**
    * @param {{ client: import("../../../structures/Client"), message: import("discord.js").Message }}
    */
-  run: async ({ client, message }) => {
+  run: async ({ client, message, player }) => {
     const args = message.content.split(' ').slice(1);
     const mode = args[0];
-    const player = client.manager.players.get(message.guild.id);
 
     if (!player) {
       const embed = new EmbedBuilder()
