@@ -1,7 +1,6 @@
 const favouriteSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const Premium = require("../../../schema/PremiumDB");
-const Premiumcheck = require("../../../schema/Premium");
+
 module.exports = {
     name: "pl-play",
     permission: "",
@@ -29,7 +28,7 @@ module.exports = {
         },
     ],
     
-    run: async (client, interaction, dispatcher, guildData) => {
+    run: async (client, interaction, player, guildData) => {
         let position = interaction.options.getInteger("position");
         const userRegex = /<@!?(\d{17,19})>/;
         if (userRegex.test(position)) {
@@ -69,20 +68,20 @@ module.exports = {
                     .setDescription(`You don't have any songs in the playlist.`),
             ],
         });
-        if (!dispatcher) {
-      dispatcher = client.manager.create({
+        if (!player) {
+      player = client.manager.create({
         guild: interaction.guildId,
         textChannel: interaction.channelId,
         voiceChannel: interaction.member?.voice.channelId,
         selfDeafen: true,
         volume: 100,
       });
-      if (dispatcher.state !== "CONNECTED") dispatcher.connect();
+      if (player.state !== "CONNECTED") player.connect();
     }
 
     const tracks = [];
     for (let i = 0; i < data.songs.length; i++) {
-      const searchResult = await dispatcher.search(data.songs[i].url, interaction.member.user);
+      const searchResult = await player.search(data.songs[i].url, interaction.member.user);
       if (searchResult.tracks.length > 0) {
         tracks.push(searchResult.tracks[0]);
       } else {
@@ -98,17 +97,19 @@ module.exports = {
       }
     }
 
-    if (!dispatcher.queue.current) {
-      dispatcher.queue.add(tracks);
-      dispatcher.play();
+    if (!player.queue.current) {
+      player.queue.add(tracks);
+      a = 1
+      player.play();
     } else {
-      dispatcher.queue.add(tracks);
+      a = 0
+      player.queue.add(tracks);
     }
         return await interaction.editReply({
             embeds: [
                 new EmbedBuilder()
                     .setColor("Blue")
-                    .setDescription(`Added ${position ? "the song" : "all songs"} to the queue.`),
+                    .setDescription(`Added ${tracks.length + a} songs to the queue.`),
             ],
         })
     }

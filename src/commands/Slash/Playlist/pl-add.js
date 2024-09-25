@@ -1,32 +1,44 @@
 const favouriteSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const Premium = require("../../../schema/PremiumDB");
-const Premiumcheck = require("../../../schema/Premium");
+
 module.exports = {
     name: "pl-add",
     description: "Add a song to your playlist",
     settings: {
-    ownerOnly: false,
-    inVoiceChannel: true,
-    sameVoiceChannel: true,
-    musicnotplaying: true,
-    musicplaying: true,
-  },
-    
-    
-    run: async (client, interaction, dispatcher) => {
-         
+        ownerOnly: false,
+        inVoiceChannel: true,
+        sameVoiceChannel: true,
+        musicnotplaying: true,
+        musicplaying: true,
+    },
+    options: [
+        {
+            name: "current",
+            description: "Add the current song to your favourite list",
+            type: ApplicationCommandOptionType.Subcommand,
+
+        },
+        {
+            name: "queue",
+            description: "Add the current queue to your favourite list",
+            type: ApplicationCommandOptionType.Subcommand,
+        },
+    ],
+
+
+    run: async (client, interaction, player) => {
+
         let subcommand = interaction.options.getSubcommand();
         switch (subcommand) {
             case "current": {
-                if (!dispatcher || !dispatcher.queue.current) return interaction.editReply({
+                if (!player || !player.queue.current) return interaction.editReply({
                     embeds: [
                         new EmbedBuilder()
                             .setColor("Red")
                             .setDescription(`There is nothing playing.`),
                     ],
                 });
-                const song = dispatcher.queue.current;
+                const song = player.queue.current;
                 let data = await favouriteSchema.findOne({ userID: interaction.member.id });
                 if (!data) {
                     data = new favouriteSchema({
@@ -52,12 +64,12 @@ module.exports = {
                     ],
                 });
                 data.songs.push({
-            track: song.track,
-            title: song.title,
-            url: song.uri,
-            duration: song.duration,
-            author: song.author,
-        });
+                    track: song.track,
+                    title: song.title,
+                    url: song.uri,
+                    duration: song.duration,
+                    author: song.author,
+                });
                 data.userID = interaction.member.id;
                 data.private = data.private;
                 data.lastUpdatedAt = Date.now();
@@ -72,14 +84,14 @@ module.exports = {
                 });
             }
             case "queue": {
-                if (!dispatcher || !dispatcher.queue.current || dispatcher.queue.length <= 0) return interaction.editReply({
+                if (!player || !player.queue.current || player.queue.length <= 0) return interaction.editReply({
                     embeds: [
                         new EmbedBuilder()
                             .setColor("Red")
-                            .setDescription(`There is nothing playing.`),
+                            .setDescription(`There is nothing in the queue.`),
                     ],
                 });
-                const queue = dispatcher.queue;
+                const queue = player.queue;
                 let data = await favouriteSchema.findOne({ userID: interaction.member.id });
                 if (!data) {
                     data = new favouriteSchema({
@@ -98,14 +110,14 @@ module.exports = {
                     ],
                 });
                 if (queue.some(song => song.isStream)) {
-      return interaction.editReply({
-        embeds: [
-          new EmbedBuilder()
-            .setColor("Red")
-            .setDescription(`Cannot save the songs in your playlist. Please try again after removing the live stream from the queue.`),
-        ],
-      });
-    }
+                    return interaction.editReply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setColor("Red")
+                                .setDescription(`Cannot save the songs in your playlist. Please try again after removing the live stream from the queue.`),
+                        ],
+                    });
+                }
                 queue.forEach(song => {
                     if (data.songs.some(s => s.title === song.title)) return interaction.editReply({
                         embeds: [
@@ -115,12 +127,12 @@ module.exports = {
                         ],
                     });
                     data.songs.push({
-            track: song.track,
-            title: song.title,
-            url: song.uri,
-            duration: song.duration,
-            author: song.author,
-        });
+                        track: song.track,
+                        title: song.title,
+                        url: song.uri,
+                        duration: song.duration,
+                        author: song.author,
+                    });
                 });
                 data.userID = interaction.member.id;
                 data.private = data.private;

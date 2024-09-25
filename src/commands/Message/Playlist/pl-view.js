@@ -1,7 +1,6 @@
 const favouriteSchema = require("../../../schema/Playlist");
-const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const Premium = require("../../../schema/PremiumDB");
-const Premiumcheck = require("../../../schema/Premium");
+const { EmbedBuilder } = require("discord.js");
+
 
 module.exports = {
     name: "pl-view",
@@ -15,7 +14,9 @@ module.exports = {
     musicnotplaying: false,
     musicplaying: false,
   },
-    
+     /**
+   * @param {{ client: import("../../structures/Client"), message: import("discord.js").Message }}
+   */
     
     run: async ({ client, message }) => {
          
@@ -60,11 +61,11 @@ module.exports = {
                     const embed = new EmbedBuilder()
                         .setColor("Blue")
                         .setAuthor({
-                            name: `${user.username}'s playlist`,
+                            name: `${user.displayName}'s playlist`,
                             url: client.config.support,
                             iconURL: client.user.avatarURL(),
                         })
-                        .setDescription(data.songs.map(({ duration, title, url }, index) => `\`${i + ++index}.\` [${title.length > 64 ? `${title.slice(0, 64)}...` : title}](${url}) - \`${client.util.duration(duration)}\`\n`).join("\n"))
+                        .setDescription(data.songs.map(({ duration, title, url }, index) => `\`${i + ++index}.\` [${title.length > 64 ? `${title.slice(0, 64)}...` : title}](${url}) - \`${client.util.duration(duration)}\``).join("\n"))
                         .setFooter({ text: `Total songs: ${data.songs.length} | Private: ${data.private}` });
                     return message.channel.send({ embeds: [embed] });
                 }
@@ -73,7 +74,7 @@ module.exports = {
             for (let i = 0; i < data.songs.length; i += 10) {
                 let songs = data.songs.slice(i, i + 10);
                 list.push(
-                    songs.map(({ duration, title, url }, index) => `\`${i + ++index}.\` [${title.length > 64 ? `${title.slice(0, 64)}...` : title}](${url}) - \`${client.util.duration(duration)}\`\n`).join("\n")
+                    songs.map(({ duration, title, url }, index) => `\`${i + ++index}.\` [${title.length > 64 ? `${title.slice(0, 64)}...` : title}](${url}) - \`${client.util.duration(duration)}\``).join("\n")
                 );
             }
             let embeds = [];
@@ -83,7 +84,7 @@ module.exports = {
                     new EmbedBuilder()
                         .setColor("Blue")
                         .setAuthor({
-                            name: `${user.username}'s playlist (${data.songs.length})`,
+                            name: `${user.displayName}'s playlist (${data.songs.length})`,
                             url: client.config.support,
                             iconURL: client.user.avatarURL(),
                         })

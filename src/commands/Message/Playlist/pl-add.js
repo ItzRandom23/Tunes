@@ -1,30 +1,33 @@
 const favouriteSchema = require("../../../schema/Playlist");
-const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "pl-add",
     description: "Add a song to your playlist",
     settings: {
-    ownerOnly: false,
-    inVoiceChannel: true,
-    sameVoiceChannel: true,
-    musicnotplaying: true,
-    musicplaying: true,
-  },
-    
-    run: async ({ client, message, dispatcher }) => {
-         
+        ownerOnly: false,
+        inVoiceChannel: true,
+        sameVoiceChannel: true,
+        musicnotplaying: true,
+        musicplaying: true,
+    },
+
+    /**
+    * @param {{ client: import("../../structures/Client"), message: import("discord.js").Message }}
+    */
+
+    run: async ({ client, message, player }) => {
         let subcommand = message.args[0]?.toLowerCase();
         switch (subcommand) {
             case "current": {
-                if (!dispatcher || !dispatcher.queue.current) return message.channel.send({
+                if (!player || !player.queue.current) return message.channel.send({
                     embeds: [
                         new EmbedBuilder()
                             .setColor("Red")
                             .setDescription(`There is nothing playing.`),
                     ],
                 });
-                const song = dispatcher.queue.current;
+                const song = player.queue.current;
                 let data = await favouriteSchema.findOne({ userID: message.author.id });
                 if (!data) {
                     data = new favouriteSchema({
@@ -50,12 +53,12 @@ module.exports = {
                     ],
                 });
                 data.songs.push({
-            track: song.track,
-            title: song.title,
-            url: song.uri,
-            duration: song.duration,
-            author: song.author,
-        });
+                    track: song.track,
+                    title: song.title,
+                    url: song.uri,
+                    duration: song.duration,
+                    author: song.author,
+                });
                 data.userID = message.author.id;
                 data.private = data.private;
                 data.lastUpdatedAt = Date.now();
@@ -70,14 +73,14 @@ module.exports = {
                 });
             }
             case "queue": {
-                if (!dispatcher || !dispatcher.queue.current || dispatcher.queue.length <= 0) return message.channel.send({
+                if (!player || !player.queue.current || player.queue.length <= 0) return message.channel.send({
                     embeds: [
                         new EmbedBuilder()
                             .setColor("Red")
-                            .setDescription(`There is nothing playing.`),
+                            .setDescription(`There is nothing in the queue.`),
                     ],
                 });
-                const queue = dispatcher.queue;
+                const queue = player.queue;
                 let data = await favouriteSchema.findOne({ userID: message.author.id });
                 if (!data) {
                     data = new favouriteSchema({
@@ -96,14 +99,14 @@ module.exports = {
                     ],
                 });
                 if (queue.some(song => song.isStream)) {
-      return message.channel.send({
-        embeds: [
-          new EmbedBuilder()
-            .setColor("Red")
-            .setDescription(`Cannot save the songs in your playlist. Please try again after removing the live stream from the queue.`),
-        ],
-      });
-    }
+                    return message.channel.send({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setColor("Red")
+                                .setDescription(`Cannot save the songs in your playlist. Please try again after removing the live stream from the queue.`),
+                        ],
+                    });
+                }
                 queue.forEach(song => {
                     if (data.songs.some(s => s.title === song.title)) return message.channel.send({
                         embeds: [
@@ -113,12 +116,12 @@ module.exports = {
                         ],
                     });
                     data.songs.push({
-            track: song.track,
-            title: song.title,
-            url: song.uri,
-            duration: song.duration,
-            author: song.author,
-        });
+                        track: song.track,
+                        title: song.title,
+                        url: song.uri,
+                        duration: song.duration,
+                        author: song.author,
+                    });
                 });
                 data.userID = message.author.id;
                 data.private = data.private;

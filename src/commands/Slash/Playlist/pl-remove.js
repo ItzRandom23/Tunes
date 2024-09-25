@@ -1,7 +1,6 @@
 const favouriteSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const Premium = require("../../../schema/PremiumDB");
-const Premiumcheck = require("../../../schema/Premium");
+
 module.exports = {
     name: "pl-remove",
     aliases: ["fr"],

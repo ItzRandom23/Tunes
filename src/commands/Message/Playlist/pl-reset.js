@@ -1,7 +1,6 @@
 const favouriteSchema = require("../../../schema/Playlist");
-const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const Premium = require("../../../schema/PremiumDB");
-const Premiumcheck = require("../../../schema/Premium");
+const { EmbedBuilder } = require("discord.js");
+
 module.exports = {
     name: "pl-reset",
     permission: "",
@@ -14,6 +13,10 @@ module.exports = {
     musicnotplaying: false,
     musicplaying: false,
   },
+
+   /**
+   * @param {{ client: import("../../structures/Client"), message: import("discord.js").Message }}
+   */
     
     run: async ({ client, message }) => {
          

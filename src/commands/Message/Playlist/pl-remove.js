@@ -1,7 +1,6 @@
 const favouriteSchema = require("../../../schema/Playlist");
-const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
-const Premium = require("../../../schema/PremiumDB");
-const Premiumcheck = require("../../../schema/Premium");
+const { EmbedBuilder } = require("discord.js");
+
 module.exports = {
     name: "pl-remove",
     aliases: ["fr"],
@@ -9,16 +8,20 @@ module.exports = {
     description: "Remove a song from your playlist",
     usage: "<song position>",
     settings: {
-    ownerOnly: false,
-    inVoiceChannel: false,
-    sameVoiceChannel: false,
-    musicnotplaying: false,
-    musicplaying: false,
-  },
-   
-    
+        ownerOnly: false,
+        inVoiceChannel: false,
+        sameVoiceChannel: false,
+        musicnotplaying: false,
+        musicplaying: false,
+    },
+
+    /**
+    * @param {{ client: import("../../structures/Client"), message: import("discord.js").Message }}
+    */
+
+
     run: async ({ client, message }) => {
-         
+
         const position = message.args[0];
         if (!position) return message.channel.send({
             embeds: [
