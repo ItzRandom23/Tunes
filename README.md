@@ -28,6 +28,10 @@ To install and run the bot locally, follow these steps:
    npm start
    ```
 
+## Deploy on Cloud
+
+If you want to host this project 24/7 for free, you can try [Itz Random Cloud](https://dash.itzrandom.cloud).
+
 ## Support
 
 For support and to join our community, visit our [Discord server](https://discord.gg/cool-music-support-925619107460698202).
