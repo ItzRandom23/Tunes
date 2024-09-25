@@ -1,4 +1,4 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 
@@ -17,7 +17,7 @@ module.exports = {
     options: [
         {
             name: "user",
-            description: "The user to view their favourite list",
+            description: "The user to view their playlist",
             type: ApplicationCommandOptionType.User,
         },
     ],
@@ -38,7 +38,7 @@ module.exports = {
                     ]
                 });
             }
-            const data = await favouriteSchema.findOne({ userID: user.id });
+            const data = await PlaylistSchema.findOne({ userID: user.id });
             if (!data) return interaction.editReply({
                 embeds: [
                     new EmbedBuilder()

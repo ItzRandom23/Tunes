@@ -1,4 +1,4 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -37,9 +37,9 @@ module.exports = {
         });
         if (state === 'private' || state === 'Private') state = true;
         if (state === 'public' || state === 'Public') state = false;
-        let data = await favouriteSchema.findOne({ userID: message.author.id });
+        let data = await PlaylistSchema.findOne({ userID: message.author.id });
         if (!data) {
-            data = new favouriteSchema({
+            data = new PlaylistSchema({
                 userID: message.author.id,
                 songs: [],
                 private: false,

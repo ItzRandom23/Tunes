@@ -1,10 +1,10 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "pl-play",
     permission: "",
-    description: "Play your favourite list",
+    description: "Play your playlist",
     usage: "fav-play [position] [user]",
     settings: {
     ownerOnly: false,
@@ -16,13 +16,13 @@ module.exports = {
     options: [
         {
             name: "position",
-            description: "The position of the song in your favourite list",
+            description: "The position of the song in your playlist",
             type: ApplicationCommandOptionType.Integer,
             required: false,
         },
         {
             name: 'user',
-            description: 'The user you want to see play favourite list',
+            description: 'The user you want to see play playlist',
             type: ApplicationCommandOptionType.String,
             required: false,
         },
@@ -43,9 +43,9 @@ module.exports = {
         let user = interaction.options.getString("user");
         if (user && user.includes("<@") && user.includes(">")) user = user.replace(/[<@!>]/g, "");
         if (!user) user = interaction.member.id;
-        let data = await favouriteSchema.findOne({ userID: user });
+        let data = await PlaylistSchema.findOne({ userID: user });
         if (!data) {
-            data = new favouriteSchema({
+            data = new PlaylistSchema({
                 userID: interaction.member.id,
                 songs: [],
                 private: false,

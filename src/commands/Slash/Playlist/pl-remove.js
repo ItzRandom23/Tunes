@@ -1,4 +1,4 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
@@ -33,9 +33,9 @@ module.exports = {
                     .setDescription(`Please provide a song position.`),
             ],
         });
-        let data = await favouriteSchema.findOne({ userID: interaction.member.id });
+        let data = await PlaylistSchema.findOne({ userID: interaction.member.id });
         if (!data) {
-            data = new favouriteSchema({
+            data = new PlaylistSchema({
                 userID: interaction.member.id,
                 songs: [],
                 private: false,

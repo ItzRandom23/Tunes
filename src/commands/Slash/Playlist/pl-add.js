@@ -1,4 +1,4 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
@@ -14,13 +14,13 @@ module.exports = {
     options: [
         {
             name: "current",
-            description: "Add the current song to your favourite list",
+            description: "Add the current song to your playlist",
             type: ApplicationCommandOptionType.Subcommand,
 
         },
         {
             name: "queue",
-            description: "Add the current queue to your favourite list",
+            description: "Add the current queue to your playlist",
             type: ApplicationCommandOptionType.Subcommand,
         },
     ],
@@ -39,9 +39,9 @@ module.exports = {
                     ],
                 });
                 const song = player.queue.current;
-                let data = await favouriteSchema.findOne({ userID: interaction.member.id });
+                let data = await PlaylistSchema.findOne({ userID: interaction.member.id });
                 if (!data) {
-                    data = new favouriteSchema({
+                    data = new PlaylistSchema({
                         userID: interaction.member.id,
                         songs: [],
                         private: false,
@@ -92,9 +92,9 @@ module.exports = {
                     ],
                 });
                 const queue = player.queue;
-                let data = await favouriteSchema.findOne({ userID: interaction.member.id });
+                let data = await PlaylistSchema.findOne({ userID: interaction.member.id });
                 if (!data) {
-                    data = new favouriteSchema({
+                    data = new PlaylistSchema({
                         userID: interaction.member.id,
                         songs: [],
                         private: false,
@@ -143,7 +143,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setColor("Blue")
-                            .setDescription(`Added **${queue.length}** songs to your favourite list.`)
+                            .setDescription(`Added **${queue.length}** songs to your playlist.`)
                     ],
                 });
             }

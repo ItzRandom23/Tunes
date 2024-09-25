@@ -1,4 +1,4 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -28,9 +28,9 @@ module.exports = {
                     ],
                 });
                 const song = player.queue.current;
-                let data = await favouriteSchema.findOne({ userID: message.author.id });
+                let data = await PlaylistSchema.findOne({ userID: message.author.id });
                 if (!data) {
-                    data = new favouriteSchema({
+                    data = new PlaylistSchema({
                         userID: message.author.id,
                         songs: [],
                         private: false,
@@ -81,9 +81,9 @@ module.exports = {
                     ],
                 });
                 const queue = player.queue;
-                let data = await favouriteSchema.findOne({ userID: message.author.id });
+                let data = await PlaylistSchema.findOne({ userID: message.author.id });
                 if (!data) {
-                    data = new favouriteSchema({
+                    data = new PlaylistSchema({
                         userID: message.author.id,
                         songs: [],
                         private: false,
@@ -132,7 +132,7 @@ module.exports = {
                     embeds: [
                         new EmbedBuilder()
                             .setColor("Blue")
-                            .setDescription(`Added **${queue.length}** songs to your favourite list.`)
+                            .setDescription(`Added **${queue.length}** songs to your playlist.`)
                     ],
                 });
             }

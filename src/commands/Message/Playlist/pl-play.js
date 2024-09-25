@@ -1,10 +1,10 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "pl-play",
     permission: "",
-    description: "Play your favourite list",
+    description: "Play your playlist",
     usage: "fav-play [position] [user]",
     settings: {
     ownerOnly: false,
@@ -33,9 +33,9 @@ module.exports = {
         let user = message.args[1];
         if (user && user.includes("<@") && user.includes(">")) user = user.replace(/[<@!>]/g, "");
         if (!user) user = message.author.id;
-        let data = await favouriteSchema.findOne({ userID: user });
+        let data = await PlaylistSchema.findOne({ userID: user });
         if (!data) {
-            data = new favouriteSchema({
+            data = new PlaylistSchema({
                 userID: message.author.id,
                 songs: [],
                 private: false,

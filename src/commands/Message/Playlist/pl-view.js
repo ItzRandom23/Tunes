@@ -1,4 +1,4 @@
-const favouriteSchema = require("../../../schema/Playlist");
+const PlaylistSchema = require("../../../schema/Playlist");
 const { EmbedBuilder } = require("discord.js");
 
 
@@ -34,7 +34,7 @@ module.exports = {
                     ]
                 });
             }
-            const data = await favouriteSchema.findOne({ userID: user.id });
+            const data = await PlaylistSchema.findOne({ userID: user.id });
             if (!data) return message.channel.send({
                 embeds: [
                     new EmbedBuilder()
