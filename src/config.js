@@ -4,7 +4,7 @@ module.exports = {
   mongo:
     "", // Your Mongo URL here
   prefix: "", // prefix here
-  defaultsource: "", // your source here 
+  defaultsource: "", // your source here ( youtube , spotify , deezer , tidal , applemusic , jiosaavn , bandcamp etc ) THE SOURCE MUST BE ENABLED IN YOUR LAVALINK SERVER!
   nodes: [
     {
       identifier: "", // Name of the Node
@@ -16,7 +16,19 @@ module.exports = {
       resumeStatus: false,
       resumeTimeout: 1000,
       secure: false, // true or false
-    },
+    },  
+    /*  EXAMPLE LAVALINK 
+    {
+      identifier: "Node1", // Name of the Node
+      host: "node.lewdhutao.my.eu.org", // I.P Address of the Node
+      port: 13592, // Port of the Node
+      password: "youshallnotpass", // Password of the Node
+      retryAmount: 1000,
+      retrydelay: 10000,
+      resumeStatus: false,
+      resumeTimeout: 1000,
+      secure: false, // true or false
+    },*/
   ],
   ownerID: ["", ""],
   spotify: [

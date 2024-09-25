@@ -78,7 +78,7 @@ module.exports = async (client, oldState, newState) => {
         if (player && player.textChannel) {
           try {
             const textChannel = await client.channels.fetch(player.textChannel);
-            if (textChannel && textChannel.isText()) {
+            if (textChannel) {
               const m = await textChannel.send({
                 embeds: [
                   new EmbedBuilder()

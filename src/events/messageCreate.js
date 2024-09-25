@@ -126,7 +126,7 @@ module.exports = async (client, message) => {
         .has(PermissionFlagsBits.ReadMessageHistory)
     )
       return;
-    if (command.settings.ownerOnly && !client.owner.includes(message.member.id))
+    if (command.settings.ownerOnly && !client.owner.includes(message.author.id))
       return;
     if (
       !message.guild.members.me.permissions.has(
@@ -146,7 +146,7 @@ module.exports = async (client, message) => {
       !message.member.permissions.has(
         PermissionFlagsBits[command.permission]
       ) &&
-      !client.owner.includes(message.member.id)
+      !client.owner.includes(message.author.id)
     ) {
       return message.channel.send({
         embeds: [
@@ -199,10 +199,10 @@ module.exports = async (client, message) => {
       });
     }
     if (
-      client.util.cooldown(message.member.id, command) &&
-      !client.owner.includes(message.member.id)
+      client.util.cooldown(message.author.id, command) &&
+      !client.owner.includes(message.author.id)
     ) {
-      let timeLeft = client.util.cooldown(message.member.id, command);
+      let timeLeft = client.util.cooldown(message.author.id, command);
 
       return message.channel.send({
         embeds: [
