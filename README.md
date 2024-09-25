@@ -1,27 +1,5 @@
 <center><img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Tunes&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=gradient" /></center>
 
-## Features
-
-Currently, the bot supports the following commands:
-- `247`
-- `invite`
-- `join`
-- `leave`
-- `ping`
-- `play`
-- `pause`
-- `prefix`
-- `resume`
-- `stop`
-- `volume`
-- `uptime`
-- `seek`
-- `skip`
-- `loop`
-- `previous`
-- `replay`
-
-
 ## Upcoming Features
 
 Advanced features will be available once the project reaches 30 stars. Stay tuned for updates!
