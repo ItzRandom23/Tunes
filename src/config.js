@@ -4,7 +4,7 @@ module.exports = {
   mongo:
     "", // Your Mongo URL here
   prefix: "", // prefix here
-  support: "" //support server link
+  support: "", //support server link
   defaultsource: "", // your source here ( youtube , spotify , deezer , tidal , applemusic , jiosaavn , bandcamp etc ) THE SOURCE MUST BE ENABLED IN YOUR LAVALINK SERVER!
   nodes: [
     {
