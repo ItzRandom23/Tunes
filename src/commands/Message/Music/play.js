@@ -91,21 +91,6 @@ module.exports = {
         ],
       });
     }
-    if (
-      /^https?:\/\/?(?:www\.)?(?:(music|m|www)\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shorts|playlist\?|watch\?v=|watch\?.+(?:&|&#38;);v=))([a-zA-Z0-9\-_]{11})?(?:(?:\?|&|&#38;)index=((?:\d){1,3}))?(?:(?:\?|&|&#38;)?list=([a-zA-Z\-_0-9]{34}))?(?:\S+)?/.test(
-        song
-      )
-    ) {
-      return message.channel.send({
-        embeds: [
-          new EmbedBuilder()
-            .setColor("Red")
-            .setDescription(
-              `As of recent events, we have removed YouTube as a supported platform, please try using a different platform or provide a search query to use our default platform.`
-            ),
-        ],
-      });
-    }
     const player = client.manager.create({
       guild: message.guildId,
       textChannel: message.channelId,
