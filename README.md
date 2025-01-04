@@ -1,5 +1,8 @@
 <center><img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Tunes&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=gradient" /></center>
 
+## NOTE
+New Updates will be published in April 2025!
+
 ## Installation
 
 To install and run the bot locally, follow these steps:
